@@ -3,6 +3,11 @@
 @import "./mixin.scss";
 @import "~bootstrap/scss/bootstrap";
 
+button,
+a {
+  color: inherit;
+}
+
 body {
   font-size: 14px;
   background-color: $bg;

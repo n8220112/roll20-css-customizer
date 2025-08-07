@@ -93,7 +93,7 @@ const CustomizerButtonWrap = ({setStyleState, styleState, userText}) => {
 
     const style = lines.join(" ");
     let result;
-    descOn ? (result = `/desc [${userText.split("\n").join("")}](#" style="${style})`) : (result = `[${userText.split("\n").join("")}](#" style="${style})`);
+    descOn ? (result = `/desc [${userText.split("\n").join(" ")}](#" style="${style})`) : (result = `[${userText.split("\n").join(" ")}](#" style="${style})`);
 
     navigator.clipboard.writeText(result).then(() => {
       if (timeoutRef.current) {

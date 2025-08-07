@@ -47,6 +47,8 @@ const PreviewPanel = ({styleState, userText}) => {
 
     margin: isAllAuto ? "auto" : `${styleState.margin.top}px ${styleState.margin.right}px ${styleState.margin.bottom}px ${styleState.margin.left}px `,
 
+    padding: `${styleState.padding.top}px ${styleState.padding.right}px ${styleState.padding.bottom}px ${styleState.padding.left}px`,
+
     textDecoration: Array.isArray(styleState.textDecoration) ? styleState.textDecoration.join(" ") : styleState.textDecoration || "",
 
     textShadow: allTextShadowFilled(styleState.textShadow) ? `${styleState.textShadow.x}px ${styleState.textShadow.y}px ${styleState.textShadow.blur}px ${styleState.textShadow.color}` : "",

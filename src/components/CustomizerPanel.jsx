@@ -91,7 +91,7 @@ const CustomizerPanel = ({styleState, setStyleState, userText}) => {
               </Col>
               {index === controlList.length - 2 && (
                 <>
-                  <BackgroundColorControl background={styleState.background} setStyleState={setStyleState} />
+                  <BackgroundColorControl background={styleState.background} styleState={styleState} setStyleState={setStyleState} />
                   <TextShadowControl textShadow={styleState.textShadow} setStyleState={setStyleState} />
                   <BoxShadowControl boxShadow={styleState.boxShadow} setStyleState={setStyleState} />
                 </>

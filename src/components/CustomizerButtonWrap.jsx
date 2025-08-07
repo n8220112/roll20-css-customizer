@@ -29,7 +29,36 @@ const CustomizerButtonWrap = ({setStyleState, styleState, userText}) => {
   const handleCopy = () => {
     const lines = [];
 
-    const {fontSize, letterSpacing, textAlign, fontWeight, fontStyle, textDecoration, color, background, display, width, height, margin, padding, border, borderRadius, textShadow, boxShadow} = styleState;
+    const {fontSize, letterSpacing, textAlign, fontWeight, fontStyle, textDecoration, color, display, width, height, margin, padding, border, borderRadius, textShadow, boxShadow, background} = styleState;
+
+    // HEX 변환기
+    const convertToHexIfPossible = (input) => {
+      const canvas = document.createElement("canvas");
+      canvas.width = canvas.height = 1;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return input;
+
+      const toHex = (colorString) => {
+        ctx.fillStyle = colorString;
+        const computed = ctx.fillStyle;
+        if (computed.startsWith("#")) return computed;
+        ctx.fillRect(0, 0, 1, 1);
+        const [r, g, b] = ctx.getImageData(0, 0, 1, 1).data;
+        return "#" + [r, g, b].map((v) => v.toString(16).padStart(2, "0")).join("");
+      };
+
+      if (input.startsWith("linear-gradient") || input.startsWith("radial-gradient")) {
+        return input.replace(/(rgba?\([^)]+\)|hsla?\([^)]+\)|#[0-9a-fA-F]{3,6}|\b[a-zA-Z]+\b)/g, (match) => {
+          try {
+            return toHex(match);
+          } catch {
+            return match;
+          }
+        });
+      }
+
+      return toHex(input);
+    };
 
     // 조건부 생략
     if (fontSize) lines.push(`font-size: ${fontSize};`);
@@ -41,10 +70,10 @@ const CustomizerButtonWrap = ({setStyleState, styleState, userText}) => {
       lines.push(`text-decoration: ${textDecoration.join(" ")};`);
     }
     if (color) lines.push(`color: ${color};`);
-    if (background) lines.push(`background: ${background};`);
     if (display && display !== "inline") lines.push(`display: ${display};`);
     if (width) lines.push(`width: ${width};`);
     if (height) lines.push(`height: ${height};`);
+    if (background) lines.push(`background: ${convertToHexIfPossible(background)};`);
 
     // margin
     const marginVals = [margin.top, margin.right, margin.bottom, margin.left];

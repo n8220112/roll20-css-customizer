@@ -1,5 +1,4 @@
-import React from "react";
-import {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 
 const ColorInput = ({value = "#000000", onChange}) => {
   const [colorValue, setColorValue] = useState(value);
@@ -9,40 +8,48 @@ const ColorInput = ({value = "#000000", onChange}) => {
     setColorValue(value);
   }, [value]);
 
-  /* 인풋 변경 */
-  // 3자리수 자동 채우기
-  const expandHex = (input) => {
-    return input.length === 3
-      ? input
-          .split("")
-          .map((char) => char + char)
-          .join("")
-      : input;
-  };
-
+  // HEX 변경 처리 (입력 중)
   const handleHexChange = (e) => {
     let input = e.target.value;
 
-    // 사용자가 입력한 값에서 맨 앞의 # 제거 (있든 없든)
+    // # 제거
     if (input.startsWith("#")) {
       input = input.slice(1);
     }
 
-    // 최대 6자리로 제한
+    // 최대 6자리 제한
     if (input.length > 6) input = input.slice(0, 6);
-    // 3자리면 6자리로 확장
-    const expanded = expandHex(input);
 
-    const newColor = `#${expanded}`;
+    const newColor = `#${input}`;
     setColorValue(newColor);
-    onChange?.(newColor);
+    onChange?.(newColor); // 변경 즉시 반영 (입력 실시간 반영은 유지)
+  };
+
+  // 포커스 아웃 시 3자리 → 6자리 확장
+  const handleHexBlur = () => {
+    const raw = colorValue.replace("#", "");
+
+    if (raw.length === 3) {
+      const expanded = raw
+        .split("")
+        .map((char) => char + char)
+        .join("");
+      const newColor = `#${expanded}`;
+      setColorValue(newColor);
+      onChange?.(newColor); // 확장된 값 반영
+    }
   };
 
   return (
     <div className="control-group-color">
       <input type="color" value={colorValue} onChange={handleHexChange} name="color input" />
-      {/* HEX 코드를 직접 입력해서도 컬러 지정 가능 */}
-      <input type="text" value={colorValue} placeholder="#HEX" onChange={handleHexChange} />
+      <input
+        type="text"
+        value={colorValue}
+        placeholder="#HEX"
+        onChange={handleHexChange}
+        onBlur={handleHexBlur} // 포커스 해제 시 확장 적용
+      />
     </div>
   );
 };

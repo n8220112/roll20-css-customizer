@@ -3,7 +3,7 @@ import {useState} from "react";
 import {Container, Form} from "react-bootstrap";
 
 const PreviewPanel = ({styleState, userText}) => {
-  console.log("스타일 잘 오는지 확인", styleState);
+  // console.log("스타일 잘 오는지 확인", styleState);
 
   // a태그 이벤트 제거
   function handleClick(e) {

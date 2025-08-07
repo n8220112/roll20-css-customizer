@@ -1,23 +1,70 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState} from "react";
+
+import CustomizerPanel from "./components/CustomizerPanel";
+import TextInputPanel from "./components/TextInputPanel";
+import PreviewPanel from "./components/PreviewPanel";
+import Contact from "./components/Contact";
+
+import "./styles/style.scss";
 
 function App() {
+  const [userText, setUserText] = useState("");
+  const [styleState, setStyleState] = useState({
+    fontSize: "",
+    letterSpacing: "",
+    textAlign: "",
+    fontWeight: "",
+    fontStyle: "",
+    textDecoration: [""],
+    color: "",
+    background: "",
+    textShadow: {
+      x: "",
+      y: "",
+      blur: "",
+      color: "",
+    },
+    boxShadow: {
+      x: "",
+      y: "",
+      blur: "",
+      color: "",
+    },
+    display: "",
+    width: "",
+    height: "",
+    padding: {
+      top: "",
+      right: "",
+      bottom: "",
+      left: "",
+    },
+    margin: {
+      top: "",
+      right: "",
+      bottom: "",
+      left: "",
+    },
+    border: {
+      width: {top: "", right: "", bottom: "", left: ""},
+      style: "",
+      color: "",
+    },
+    borderRadius: {
+      top: "",
+      right: "",
+      bottom: "",
+      left: "",
+    },
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wrap">
+      <main className="main-container">
+        <CustomizerPanel styleState={styleState} setStyleState={setStyleState} userText={userText} />
+        <TextInputPanel userText={userText} setUserText={setUserText} />
+        <PreviewPanel styleState={styleState} setStyleState={setStyleState} userText={userText} setUserText={setUserText} />
+      </main>
+      <Contact />
     </div>
   );
 }

@@ -63,7 +63,6 @@ const CustomizerButtonWrap = ({setStyleState, styleState, userText}) => {
     // 조건부 생략
     if (fontSize) lines.push(`font-size: ${fontSize};`);
     if (letterSpacing) lines.push(`letter-spacing: ${letterSpacing};`);
-    if (textAlign) lines.push(`text-align: ${textAlign};`);
     if (fontWeight && fontWeight !== "bold") lines.push(`font-weight: ${fontWeight};`);
     if (fontStyle && fontStyle !== "italic") lines.push(`font-style: ${fontStyle};`);
     if (typeof textDecoration === "string" && textDecoration.trim() !== "") {
@@ -77,6 +76,15 @@ const CustomizerButtonWrap = ({setStyleState, styleState, userText}) => {
     if (width) lines.push(`width: ${width};`);
     if (height) lines.push(`height: ${height};`);
     if (styleState.backgroundColor) lines.push(`background-color: ${convertToHexIfPossible(styleState.backgroundColor)};`);
+
+    //text-align
+    if (textAlign) {
+      if (descOn && textAlign === "center") {
+        lines.push(``);
+      } else {
+        lines.push(`text-align: ${textAlign};`);
+      }
+    }
 
     // margin
     const marginVals = [margin.top, margin.right, margin.bottom, margin.left];

@@ -14,7 +14,7 @@ const TextAlignControl = ({textAlign, setStyleState}) => {
       <button className={textAlign === "left" ? "on" : ""} onClick={() => handleChange("left")}>
         <AiOutlineAlignLeft />
       </button>
-      <button className={textAlign === "" ? "on" : ""} onClick={() => handleChange("")}>
+      <button className={textAlign === "center" ? "on" : ""} onClick={() => handleChange("center")}>
         <AiOutlineAlignCenter />
       </button>
       <button className={textAlign === "right" ? "on" : ""} onClick={() => handleChange("right")}>

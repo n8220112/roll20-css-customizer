@@ -17,7 +17,8 @@ function App() {
     fontStyle: "",
     textDecoration: [""],
     color: "",
-    background: "",
+    backgroundColor: "",
+    backgroundImage: "",
     textShadow: {
       x: "",
       y: "",

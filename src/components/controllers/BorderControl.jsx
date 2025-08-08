@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Dropdown, DropdownButton, Col, Form, InputGroup} from "react-bootstrap";
 import {TbBorderOuter, TbBorderLeft, TbBorderTop, TbBorderRight, TbBorderBottom} from "react-icons/tb";
 import ColorInput from "./inputs/ColorInput";
+import TooltipButton from "./inputs/TooltipButton";
 
 const BorderControl = ({border, setStyleState}) => {
   const [showDetail, setShowDetail] = useState(false);
@@ -58,8 +59,10 @@ const BorderControl = ({border, setStyleState}) => {
 
   return (
     <Col xs={12} md={12}>
-      <div className="info">테두리</div>
-
+      <div className="info">
+        테두리
+        <TooltipButton content="solid가 기본 단색 선이에요. 선이 두꺼워야 차이점이 티가 나는 모양들이 있습니다!" />
+      </div>
       <div className="control">
         <Form.Control placeholder="px" type="number" min="0" value={border.width.top || ""} onChange={handleAllWidthChange} />
         <button className="toggle-detail" type="button" onClick={() => setShowDetail((prev) => !prev)}>

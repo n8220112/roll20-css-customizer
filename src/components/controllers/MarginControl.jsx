@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {Col, Form, InputGroup, Button} from "react-bootstrap";
+import {Col, Form, InputGroup} from "react-bootstrap";
 import {TbBoxMargin, TbBoxAlignLeft, TbBoxAlignTop, TbBoxAlignRight, TbBoxAlignBottom} from "react-icons/tb";
 import TooltipButton from "./inputs/TooltipButton";
 
@@ -64,13 +64,13 @@ const MarginControl = ({margin, setStyleState}) => {
     <Col xs={12} md={12}>
       <div className="info">
         마진
-        <TooltipButton content="너비값을 적용한 요소를 가운데에 정렬하고 싶다면 auto를 사용하세요." />
+        <TooltipButton content="텍스트의 바깥에 여백을 둡니다. 태그와 태그 사이의 거리를 벌립니다. <br/>너비값을 적용한 요소를 가운데에 정렬하고 싶다면 auto를 사용하세요." />
       </div>
 
       <div className="control">
-        <Button className="additional-button" variant="outline-info" size="sm" onClick={handleAutoToggle}>
+        <button className={useAuto ? "on" : ""} onClick={handleAutoToggle}>
           auto
-        </Button>
+        </button>
         <Form.Control placeholder="px" type="number" min="0" aria-label="marginControlInput" value={useAuto ? "" : localMargin.top} onChange={handleAllMarginChange} disabled={useAuto} />
         <button className="toggle-detail" type="button" onClick={() => setShowDetail((prev) => !prev)}>
           <TbBoxMargin />

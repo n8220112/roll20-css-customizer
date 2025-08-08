@@ -28,7 +28,7 @@ const CustomizerPanel = ({styleState, setStyleState, userText}) => {
       component: <ResetControl textDecoration={styleState.textDecoration} color={styleState.color} display={styleState.display} styleState={styleState} setStyleState={setStyleState} />,
       type: "switch",
       tooltip: true,
-      tooltipDesc: "밑줄 제거, 핑크 색상 제거,<br>디스플레이 inline-block 옵션입니다.",
+      tooltipDesc: "마우스오버 시의 밑줄 제거, 핑크 색상 제거, desc의 기본 이탤릭 제거, 디스플레이 inline-block 옵션입니다.",
     },
     {
       label: "폰트 크기",
@@ -41,8 +41,8 @@ const CustomizerPanel = ({styleState, setStyleState, userText}) => {
       label: "글자 간격",
       key: "letterSpacing",
       component: <LetterSpacingControl letterSpacing={styleState.letterSpacing} setStyleState={setStyleState} />,
-      tooltip: false,
-      tooltipDesc: "",
+      tooltip: true,
+      tooltipDesc: "좁히고 싶다면 마이너스 값을 입력하세요.",
     },
     {
       label: "정렬",
@@ -56,14 +56,14 @@ const CustomizerPanel = ({styleState, setStyleState, userText}) => {
       key: "textStyleGroup",
       component: <TextStyleControl fontWeight={styleState.fontWeight} fontStyle={styleState.fontStyle} textDecoration={styleState.textDecoration} setStyleState={setStyleState} />, // bold/italic/underline 등
       tooltip: true,
-      tooltipDesc: "중첩 가능합니다. <br> 기존 마크다운 문법(*로 쓰는 거)도 정상작동!",
+      tooltipDesc: "중첩 가능합니다.<br><strong>**볼드**와 <i>*이탤릭*</i>의 경우, <em>desc 아닌 일반 채팅</em>에 사용하고 싶을 시 <em>*로 쓰는 마크다운 문법</em>으로 적용하셔야 합니다.</strong>",
     },
     {
       label: "글자 색상",
       key: "color",
       component: <ColorControl color={styleState.color} setStyleState={setStyleState} />,
       tooltip: true,
-      tooltipDesc: "그라데이션 못 넣어요~!",
+      tooltipDesc: "#404040이 롤20 기본 색상입니다.",
     },
     {
       label: "디스플레이",
@@ -91,7 +91,7 @@ const CustomizerPanel = ({styleState, setStyleState, userText}) => {
               </Col>
               {index === controlList.length - 2 && (
                 <>
-                  <BackgroundColorControl background={styleState.background} styleState={styleState} setStyleState={setStyleState} />
+                  <BackgroundColorControl backgroundColor={styleState.backgroundColor} backgroundImage={styleState.backgroundImage} styleState={styleState} setStyleState={setStyleState} />
                   <TextShadowControl textShadow={styleState.textShadow} setStyleState={setStyleState} />
                   <BoxShadowControl boxShadow={styleState.boxShadow} setStyleState={setStyleState} />
                 </>

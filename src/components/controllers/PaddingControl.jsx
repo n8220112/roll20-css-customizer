@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {Col, Form, InputGroup} from "react-bootstrap";
 import {TbBoxPadding, TbBoxAlignLeft, TbBoxAlignTop, TbBoxAlignRight, TbBoxAlignBottom} from "react-icons/tb";
+import TooltipButton from "./inputs/TooltipButton";
 
 const PaddingControl = ({padding, setStyleState}) => {
   const [showDetail, setShowDetail] = useState(false);
@@ -45,7 +46,10 @@ const PaddingControl = ({padding, setStyleState}) => {
 
   return (
     <Col xs={12} md={12}>
-      <div className="info">패딩</div>
+      <div className="info">
+        패딩
+        <TooltipButton content="텍스트의 주변에 여백이 생깁니다. 배경이나 테두리가 있어야 눈에 보입니다." />
+      </div>
       <div className="control">
         <Form.Control placeholder="px" type="number" min="0" aria-label="paddingControlInput" value={localPadding.top} onChange={handleAllPaddingChange} />
         <button className="toggle-detail" type="button" onClick={() => setShowDetail((prev) => !prev)}>

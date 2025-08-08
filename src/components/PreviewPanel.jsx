@@ -30,8 +30,28 @@ const PreviewPanel = ({styleState, userText}) => {
 
   const borderRadiusFilled = styleState.borderRadius.top || styleState.borderRadius.right || styleState.borderRadius.bottom || styleState.borderRadius.left;
 
+  const isPaddingSet = Object.values(styleState.padding).some((val) => val !== "");
+  const isMarginSet = Object.values(styleState.margin).some((val) => val !== "");
+  const isTextDecorationSet = Object.values(styleState.textDecoration).some((val) => val !== "");
+
   const computedStyle = {
     ...styleStateWithoutBorder,
+
+    ...(isPaddingSet
+      ? {
+          padding: `${styleState.padding.top || 0}px ${styleState.padding.right || 0}px ${styleState.padding.bottom || 0}px ${styleState.padding.left || 0}px`,
+        }
+      : {
+          padding: "",
+        }),
+
+    ...(isMarginSet
+      ? {
+          margin: isAllAuto ? "auto" : `${styleState.margin.top || 0}px ${styleState.margin.right || 0}px ${styleState.margin.bottom || 0}px ${styleState.margin.left || 0}px`,
+        }
+      : {
+          margin: "",
+        }),
 
     ...(hasBorderWidth
       ? {
@@ -39,15 +59,7 @@ const PreviewPanel = ({styleState, userText}) => {
           borderStyle: border.style || "none",
           borderColor: border.color || "transparent",
         }
-      : {
-          borderWidth: "0px",
-          borderStyle: "none",
-          borderColor: "transparent",
-        }),
-
-    margin: isAllAuto ? "auto" : `${styleState.margin.top}px ${styleState.margin.right}px ${styleState.margin.bottom}px ${styleState.margin.left}px `,
-
-    padding: `${styleState.padding.top}px ${styleState.padding.right}px ${styleState.padding.bottom}px ${styleState.padding.left}px`,
+      : {}),
 
     textDecoration: Array.isArray(styleState.textDecoration) ? styleState.textDecoration.join(" ") : styleState.textDecoration || "",
 
@@ -86,6 +98,7 @@ const PreviewPanel = ({styleState, userText}) => {
           {spacerOn ? <div className="spacer"></div> : ""}
           <span style={{display: "none"}}>2050년에 시작되는 아대물CP 젠싲 파이팅</span>
           <a
+            className={isTextDecorationSet ? "default" : ""}
             href="https://zensiz.ivyro.net/"
             onClick={handleClick}
             style={computedStyle}

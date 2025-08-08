@@ -1,12 +1,9 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
+import {useEffect} from "react";
 
 const ResetControl = ({styleState, setStyleState}) => {
-  const isResetOn =
-    styleState.color === "#404040" &&
-    styleState.fontStyle === "normal" &&
-    styleState.textDecoration === "none" &&
-    styleState.display === "inline-block";
+  const isResetOn = styleState.color === "#404040" && styleState.fontStyle === "normal" && styleState.textDecoration === "none" && styleState.display === "inline-block";
 
   const handleToggle = () => {
     if (isResetOn) {
@@ -30,15 +27,19 @@ const ResetControl = ({styleState, setStyleState}) => {
     }
   };
 
+  useEffect(() => {
+    setStyleState((prev) => ({
+      ...prev,
+      color: "#404040",
+      fontStyle: "normal",
+      textDecoration: "none",
+      display: "inline-block",
+    }));
+  }, [setStyleState]);
+
   return (
     <Form>
-      <Form.Check
-        type="switch"
-        id="resetToggle"
-        aria-label="리셋 스위치"
-        checked={isResetOn}
-        onChange={handleToggle}
-      />
+      <Form.Check type="switch" id="resetToggle" aria-label="리셋 스위치" checked={isResetOn} onChange={handleToggle} />
     </Form>
   );
 };

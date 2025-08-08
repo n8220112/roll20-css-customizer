@@ -2,6 +2,7 @@ import React from "react";
 import {useState, useEffect} from "react";
 import {Col, Form, InputGroup} from "react-bootstrap";
 import {TbBorderOuter, TbRadiusTopLeft, TbRadiusTopRight, TbRadiusBottomLeft, TbRadiusBottomRight} from "react-icons/tb";
+import TooltipButton from "./inputs/TooltipButton";
 
 const BorderRadiusControl = ({borderRadius, setStyleState}) => {
   const [showDetail, setShowDetail] = useState(false);
@@ -42,7 +43,10 @@ const BorderRadiusControl = ({borderRadius, setStyleState}) => {
 
   return (
     <Col xs={12} md={12}>
-      <div className="info">둥글기</div>
+      <div className="info">
+        둥글기
+        <TooltipButton content="모서리의 둥글기를 정합니다. 배경이나 테두리가 있어야 눈에 보입니다." />
+      </div>
       <div className="control">
         <Form.Control placeholder="px" type="number" min="0" aria-label="borderRadiusControlInput" value={radius.top || ""} onChange={handleAllChange} />
         <button type="button" className="toggle-detail" onClick={() => setShowDetail((prev) => !prev)}>

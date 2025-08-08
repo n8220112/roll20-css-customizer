@@ -1,5 +1,6 @@
 import React from "react";
 import {BsTypeBold, BsTypeItalic, BsTypeStrikethrough, BsTypeUnderline} from "react-icons/bs";
+import {RxTextNone} from "react-icons/rx";
 
 const TextStyleControl = ({fontWeight, fontStyle, textDecoration, setStyleState}) => {
   const handleToggleFontWeight = () => {
@@ -18,7 +19,8 @@ const TextStyleControl = ({fontWeight, fontStyle, textDecoration, setStyleState}
 
   const handleToggleUnderline = () => {
     setStyleState((prev) => {
-      const current = Array.isArray(prev.textDecoration) ? prev.textDecoration : [];
+      let current = Array.isArray(prev.textDecoration) ? prev.textDecoration : [];
+      current = current.filter((v) => v !== "none"); // none 제거
       const updated = current.includes("underline") ? current.filter((v) => v !== "underline") : [...current, "underline"];
       return {...prev, textDecoration: updated};
     });
@@ -26,14 +28,23 @@ const TextStyleControl = ({fontWeight, fontStyle, textDecoration, setStyleState}
 
   const handleToggleStrikethrough = () => {
     setStyleState((prev) => {
-      const current = Array.isArray(prev.textDecoration) ? prev.textDecoration : [];
+      let current = Array.isArray(prev.textDecoration) ? prev.textDecoration : [];
+      current = current.filter((v) => v !== "none"); // none 제거
       const updated = current.includes("line-through") ? current.filter((v) => v !== "line-through") : [...current, "line-through"];
       return {...prev, textDecoration: updated};
     });
   };
 
+  const handleToggleNone = () => {
+    setStyleState((prev) => ({
+      ...prev,
+      textDecoration: ["none"],
+    }));
+  };
+
   const isUnderline = Array.isArray(textDecoration) && textDecoration.includes("underline");
   const isStrikethrough = Array.isArray(textDecoration) && textDecoration.includes("line-through");
+  const isNone = textDecoration.includes("none");
 
   return (
     <>
@@ -48,6 +59,9 @@ const TextStyleControl = ({fontWeight, fontStyle, textDecoration, setStyleState}
       </button>
       <button className={isUnderline ? "on" : ""} onClick={handleToggleUnderline}>
         <BsTypeUnderline />
+      </button>
+      <button className={isNone ? "on" : ""} onClick={handleToggleNone}>
+        <RxTextNone />
       </button>
     </>
   );

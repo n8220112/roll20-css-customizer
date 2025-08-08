@@ -29,7 +29,7 @@ const CustomizerButtonWrap = ({setStyleState, styleState, userText}) => {
   const handleCopy = () => {
     const lines = [];
 
-    const {fontSize, letterSpacing, textAlign, fontWeight, fontStyle, textDecoration, color, display, width, height, margin, padding, border, borderRadius, textShadow, boxShadow, background} = styleState;
+    const {fontSize, letterSpacing, textAlign, fontWeight, fontStyle, textDecoration, color, display, width, height, margin, padding, border, borderRadius, textShadow, boxShadow} = styleState;
 
     // HEX 변환기
     const convertToHexIfPossible = (input) => {
@@ -48,7 +48,7 @@ const CustomizerButtonWrap = ({setStyleState, styleState, userText}) => {
       };
 
       if (input.startsWith("linear-gradient") || input.startsWith("radial-gradient")) {
-        return input.replace(/(rgba?\([^)]+\)|hsla?\([^)]+\)|#[0-9a-fA-F]{3,6}|\b[a-zA-Z]+\b)/g, (match) => {
+        return input.replace(/(rgba?\([^)]+\)|hsla?\([^)]+\)|#[0-9a-fA-F]{3,6}|\b(?:red|green|blue|black|white|yellow|purple|pink|gray|grey|orange|brown|cyan|magenta|lime|navy|teal|maroon|olive|aqua|fuchsia|silver|gold)\b)/gi, (match) => {
           try {
             return toHex(match);
           } catch {
@@ -66,14 +66,17 @@ const CustomizerButtonWrap = ({setStyleState, styleState, userText}) => {
     if (textAlign) lines.push(`text-align: ${textAlign};`);
     if (fontWeight && fontWeight !== "bold") lines.push(`font-weight: ${fontWeight};`);
     if (fontStyle && fontStyle !== "italic") lines.push(`font-style: ${fontStyle};`);
-    if (Array.isArray(textDecoration) && textDecoration.filter(Boolean).length > 0) {
+    if (typeof textDecoration === "string" && textDecoration.trim() !== "") {
+      lines.push(`text-decoration: ${textDecoration};`);
+    } else if (Array.isArray(textDecoration) && textDecoration.filter(Boolean).length > 0) {
       lines.push(`text-decoration: ${textDecoration.join(" ")};`);
     }
+
     if (color) lines.push(`color: ${color};`);
     if (display && display !== "inline") lines.push(`display: ${display};`);
     if (width) lines.push(`width: ${width};`);
     if (height) lines.push(`height: ${height};`);
-    if (background) lines.push(`background: ${convertToHexIfPossible(background)};`);
+    if (styleState.backgroundColor) lines.push(`background-color: ${convertToHexIfPossible(styleState.backgroundColor)};`);
 
     // margin
     const marginVals = [margin.top, margin.right, margin.bottom, margin.left];
@@ -120,6 +123,17 @@ const CustomizerButtonWrap = ({setStyleState, styleState, userText}) => {
       lines.push(`box-shadow: ${boxShadow.x}px ${boxShadow.y}px ${boxShadow.blur}px ${boxShadow.color};`);
     }
 
+    // background-image 정리: 마지막에 위치 & ); 제거
+    if (styleState.backgroundImage) {
+      let cleaned = convertToHexIfPossible(styleState.backgroundImage);
+
+      // 마지막 ');' 또는 ' );' 제거
+      cleaned = cleaned.replace(/\s*\)$/, "");
+
+      // background-image는 반드시 제일 마지막에 위치
+      lines.push(`background-image: ${cleaned}`);
+    }
+
     const style = lines.join(" ");
     let result;
     descOn ? (result = `/desc [${userText.split("\n").join(" ")}](#" style="${style})`) : (result = `[${userText.split("\n").join(" ")}](#" style="${style})`);
@@ -138,7 +152,7 @@ const CustomizerButtonWrap = ({setStyleState, styleState, userText}) => {
   return (
     <>
       <div className="customizer-buttons-wrap">
-        <Form.Check id="includeDesc" label="/desc 포함" onChange={() => setDescOn(!descOn)} />
+        <Form.Check id="includeDesc" label="복사할 태그에 /desc 포함" onChange={() => setDescOn(!descOn)} />
         <div className="buttons">
           <ResetStyleStateButton setStyleState={setStyleState} />
           <button ref={target} onClick={handleCopy}>

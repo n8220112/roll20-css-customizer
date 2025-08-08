@@ -11,7 +11,7 @@ const Contact = () => {
       <a href="https://posty.pe/k6wprk" rel="noreferrer" target="_blank">
         <TbFileInfo />
       </a>
-      <span>ⓒ 2025. @yanoquedanrosas All rights reserved.</span>
+      <span>ⓒ 2025. <a href="https://x.com/yanoquedanrosas" rel="noreferrer" target="_blank">@yanoquedanrosas</a> All rights reserved.</span>
     </aside>
   );
 };

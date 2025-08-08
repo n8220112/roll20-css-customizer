@@ -63,7 +63,7 @@ const CustomizerPanel = ({styleState, setStyleState, userText}) => {
       key: "color",
       component: <ColorControl color={styleState.color} setStyleState={setStyleState} />,
       tooltip: true,
-      tooltipDesc: "#404040이 롤20 기본 색상입니다.",
+      tooltipDesc: "#333333이 롤20 기본 색상입니다.",
     },
     {
       label: "디스플레이",

@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import {useEffect} from "react";
 
 const ResetControl = ({styleState, setStyleState}) => {
-  const isResetOn = styleState.color === "#404040" && styleState.fontStyle === "normal" && styleState.textDecoration === "none" && styleState.display === "inline-block";
+  const isResetOn = styleState.color === "#333333" && styleState.fontStyle === "normal" && styleState.textDecoration === "none" && styleState.display === "inline-block";
 
   const handleToggle = () => {
     if (isResetOn) {
@@ -19,7 +19,7 @@ const ResetControl = ({styleState, setStyleState}) => {
       // ON → 리셋 적용
       setStyleState((prev) => ({
         ...prev,
-        color: "#404040",
+        color: "#333333",
         fontStyle: "normal",
         textDecoration: "none",
         display: "inline-block",
@@ -30,7 +30,7 @@ const ResetControl = ({styleState, setStyleState}) => {
   useEffect(() => {
     setStyleState((prev) => ({
       ...prev,
-      color: "#404040",
+      color: "#333333",
       fontStyle: "normal",
       textDecoration: "none",
       display: "inline-block",

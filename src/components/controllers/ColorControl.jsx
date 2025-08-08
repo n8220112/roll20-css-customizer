@@ -8,7 +8,7 @@ const ColorControl = ({color, setStyleState}) => {
   };
 
   const handleDefault = () => {
-    setStyleState((prev) => ({...prev, color: "#404040"}));
+    setStyleState((prev) => ({...prev, color: "#333333"}));
   };
 
   return (

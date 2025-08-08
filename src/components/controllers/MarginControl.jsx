@@ -71,7 +71,7 @@ const MarginControl = ({margin, setStyleState}) => {
         <button className={useAuto ? "on" : ""} onClick={handleAutoToggle}>
           auto
         </button>
-        <Form.Control placeholder="px" type="number" min="0" aria-label="marginControlInput" value={useAuto ? "" : localMargin.top} onChange={handleAllMarginChange} disabled={useAuto} />
+        <Form.Control placeholder="px" type="number" aria-label="marginControlInput" value={useAuto ? "" : localMargin.top} onChange={handleAllMarginChange} disabled={useAuto} />
         <button className="toggle-detail" type="button" onClick={() => setShowDetail((prev) => !prev)}>
           <TbBoxMargin />
         </button>

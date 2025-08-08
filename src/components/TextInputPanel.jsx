@@ -11,8 +11,8 @@ const TextInputPanel = ({userText, setUserText}) => {
       </Row>
       <Row>
         <Col xs={12}>
-          <FloatingLabel controlId="floatingTextarea2" label="문장을 입력하세요">
-            <Form.Control as="textarea" spellCheck="false" placeholder="Write your text here" value={userText} onChange={(e) => setUserText(e.target.value)} />
+          <FloatingLabel controlId="floatingTextarea" label="문장을 입력하세요">
+            <Form.Control as="textarea" spellCheck="false" placeholder="문장을 입력하세요" value={userText} onChange={(e) => setUserText(e.target.value)} />
           </FloatingLabel>
         </Col>
       </Row>

@@ -1,70 +1,53 @@
-# Getting Started with Create React App
+# Roll20 전용 채팅 CSS 자동 생성 웹페이지
+온라인 TRPG 웹사이트 Roll20을 위한 CSS 스타일 생성기입니다.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[🔗 사이트 바로가기](https://make-roll-kku.pages.dev/)
 
-## Available Scripts
+---
+## 소개
+불확실하고 시간 소모가 많은 기존 작성법을 대체하여 본 웹페이지에서 모든 불편을 해소할 수 있도록 하였습니다.
+문장 입력 패널에서 문장을 입력하고, 커스텀 패널에서 스타일을 수정하고, 결과물 패널에서 미리 볼 수 있습니다.
+사소한 입력값 수정 또한 그대로 반영되어, 원하는 결과물을 구현할 수 있도록 돕습니다.
 
-In the project directory, you can run:
+### 제작 배경
+온라인 TRPG 웹사이트 Roll20 채팅에서는 이러한 방식으로 텍스트에 CSS를 적용 가능합니다.
+```
+[원하는 문장](#" style="CSS 코드 입력)
+```
+하지만 일일이 작성하기에는 번거로우며 매우 오랜 시간이 소요됩니다.
+그리고 작성한 코드의 결과물을 직접 전송하지 전까지는 확인할 수 없습니다.
+타이핑 속도가 중요한 온라인 TRPG의 특성상 CSS 작성에 대한 고민 때문에 많은 시간을 할애하고 있을 수는 없습니다.
+이 프로젝트는 이러한 불편에서 시작되었습니다.
 
-### `npm start`
+### 주요 기능
+#### 문장 입력 패널
+<img width="473" height="274" alt="image" src="https://github.com/user-attachments/assets/f393d4da-01e5-472f-b86c-09938c09057b" /> <br/>
+사용자가 원하는 문장을 입력합니다. 하단의 결과물 패널에서 확인 가능하며, 여기에 커스텀한 스타일이 더해집니다.
+이후 코드 복사 시, 여기에 입력한 문장까지 포함되어 즉시 채팅 입력창에 붙여넣어 사용할 수 있도록 구현했습니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+#### 커스텀 패널
+<img width="473" height="942" alt="image" src="https://github.com/user-attachments/assets/3caa2543-ecd9-4793-baa7-d3ca5bcd1e81" /> <br/>
+사용자가 원하는 방식대로 스타일을 바꿀 수 있습니다. CSS 문법이 익숙하지 않은 사용자를 위해 간단한 안내를 툴팁으로 적어두었습니다. 여기에서 설정한 스타일은 결과물 패널에 즉시 반영됩니다.
+버튼을 눌러 커스텀 스타일 리셋과 코드 복사가 가능합니다.
+코드 복사에 Roll20 전용 명령어 옵션을 추가하여 즉시 붙여넣어 사용하면 되도록 사용자에게 편의를 제공합니다. 이 옵션은 일반 채팅과 게임 관리자 채팅을 구분한 것으로, 이것을 설정함에 따라 각 채팅에 맞춘 다른 결과물이 도출됩니다.
+UI에 부트스트랩을 활용하여 개발 시의 편의성을 도모하였습니다.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+#### 결과물 패널
+<img width="475" height="672" alt="image" src="https://github.com/user-attachments/assets/ad54143b-1335-4185-aa1c-ad77b71717f2" /> <br/>
+여기에서 사용자가 입력한 텍스트에 원하는 스타일을 즉시 확인할 수 있습니다. Roll20 채팅 스타일과 동일하게 적용되어, 실제 채팅 전송 시의 모습을 미리 확인할 수 있습니다.
+구분선을 숨기는 옵션이 있어, 사용자의 Roll20 채팅 설정과 동일하게 맞출 수 있습니다.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 사용 기술
+- React
+- SCSS
+- React Bootstrap
+- react-best-gradient-color-picker
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 주의사항
+- 이 프로젝트에는 MIT 라이선스 기반의 오픈소스 라이브러리를 사용하고 있으며, 관련 저작권 및 조건을 준수합니다.
+- 이 프로젝트는 Roll20과 무관한 비영리적 목적의 프로젝트입니다.
+- This project is a non-commercial project and is not affiliated with Roll20.
